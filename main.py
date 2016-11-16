@@ -4,10 +4,7 @@ import os, sys
 
 from matrix import gen_multi_matricies, save_matricies, read_matricies
 from new_algorithm import run_sys_pref_col_heuristic
-
-
-
-
+from gale_shapley import run_gale_shapley
 
 def main():
 	sys_matrix = None
@@ -44,6 +41,9 @@ def main():
 	result_matrix = run_sys_pref_col_heuristic(sys_matrix, user_matrix)
 	print "New algorithm result matrix:"
 	print result_matrix
+	gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix)
+	print "Gale Shapley result matrix:"
+	print gs_result_matrix
 
 if __name__ == '__main__':
 	main()

@@ -1,8 +1,6 @@
 import numpy as np
 from matrix import build_matrix_from_arr
 
-MAX_MATCHES = 1
-
 def build_heur_arr(arr_len):
 	heur_arr = []
 	arr_cntr = 0
@@ -33,7 +31,7 @@ def build_pref_order_arr(heur_arr):
 		pref_order_arr.append(best_heur_elt)
 	return pref_order_arr
 
-def run_sys_pref_col_heuristic(sys_matrix, user_matrix):
+def run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches):
 	sys_matrix_list = sys_matrix.tolist() # use just the list version of the matrix for the moment
 	user_matrix_list = user_matrix.tolist()
 	sys_col_heur_arr = build_heur_arr(len(sys_matrix_list[0]))
@@ -52,7 +50,7 @@ def run_sys_pref_col_heuristic(sys_matrix, user_matrix):
 		curr_finished_matrix_col = build_heur_arr(len(user_matrix_list[0]))
 		for curr_user_matrix_row in user_matrix_list: # pick most preferred column choice, based on user preference
 			curr_user_pref = curr_user_matrix_row[col_pref_elt]
-			if curr_user_pref > best_user_pref and len(finished_user_rows_dict[curr_user_row_elt]) < MAX_MATCHES:
+			if curr_user_pref > best_user_pref and len(finished_user_rows_dict[curr_user_row_elt]) < max_matches:
 				if col_pref_elt not in finished_user_rows_dict[curr_user_row_elt]:
 					best_user_pref = curr_user_pref
 					best_user_row_elt = curr_user_row_elt

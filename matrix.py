@@ -42,6 +42,18 @@ def convert_arr_to_str(curr_arr):
 		the_str+= str(arr_elt) + ' '
 	return the_str.rstrip()
 
+def build_matrix_from_arr(the_arr):
+	matrix_str = ''
+	matrix_elt = 0
+	for row_elt in the_arr:
+		row_str = convert_arr_to_str(row_elt)
+		if matrix_elt < len(the_arr)-1:
+			matrix_str += (row_str + ';')
+		else:
+			matrix_str += row_str
+		matrix_elt+=1
+	return np.matrix(matrix_str)
+
 def gen_random_matrix(row_len, col_len):
 	curr_row_cntr = 1
 	matrix_str = ''

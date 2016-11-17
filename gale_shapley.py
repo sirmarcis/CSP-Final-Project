@@ -65,7 +65,7 @@ def run_gale_shapley(sys_matrix, user_matrix):
 			if found_match_p:
 				unmatched_sys_elts.remove(curr_sys_elt)
 			if return_sys_to_matching != None:
-				unmatched_sys_elts.append(curr_sys_elt)
+				unmatched_sys_elts.append(return_sys_to_matching)
 	final_matrix_arr = build_empty_final_matrix_arr(sys_pref_order_list)
 	for user_elt in matched_user_elts_dict:
 		sys_elt = matched_user_elts_dict[user_elt]

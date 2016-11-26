@@ -31,7 +31,6 @@ def compute_utility(matrix1, matrix2):
 				col_averages[col_cntr] += curr_elt
 				num_col_avg_vals[col_cntr]+=1
 			col_cntr+=1
-		print curr_row
 	tot_utility = 0
 	col_cntr = 0
 	for col_val in col_averages:
@@ -39,35 +38,67 @@ def compute_utility(matrix1, matrix2):
 		col_cntr+=1
 	return tot_utility
 
+def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
+	curr_matrix_cntr = 0
+	avg_a1_sys_utility = 0
+	avg_a1_user_utility = 0
+	avg_gs_sys_utility = 0
+	avg_gs_user_utility = 0
+	while curr_matrix_cntr < len(sys_matrices):
+		curr_sys_matrix = sys_matrices[curr_matrix_cntr]
+		curr_user_matrix = user_matrices[curr_matrix_cntr]
+		#curr_a1_result_matrix = run_sys_pref_col_heuristic(curr_sys_matrix, curr_user_matrix, max_matches)
+		curr_a1_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
+		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix)
+		curr_a1_sys_utility = compute_utility(curr_sys_matrix, curr_a1_result_matrix)
+		avg_a1_sys_utility += curr_a1_sys_utility
+		curr_a1_user_utility = compute_utility(curr_user_matrix, curr_a1_result_matrix)
+		avg_a1_user_utility+=curr_a1_user_utility
+		curr_gs_sys_utility = compute_utility(curr_sys_matrix, curr_gs_result_matrix)
+		avg_gs_sys_utility+=curr_gs_sys_utility
+		curr_gs_user_utility = compute_utility(curr_user_matrix, curr_gs_result_matrix)
+		avg_gs_user_utility+=curr_gs_user_utility
+		curr_matrix_cntr+=1		
+	avg_a1_sys_utility = avg_a1_sys_utility/curr_matrix_cntr
+	avg_a1_user_utility = avg_a1_user_utility/curr_matrix_cntr
+	avg_gs_sys_utility = avg_gs_sys_utility/curr_matrix_cntr
+	avg_gs_user_utility = avg_gs_user_utility/curr_matrix_cntr
+	print "gale shapley: average System utility:", avg_gs_sys_utility, ", average combined user utility:", avg_gs_user_utility
+	print "new algorithm: average System utility:", avg_a1_sys_utility, ", average combined user utility:", avg_a1_user_utility
+
 def main():
 	sys_matrix = None
 	user_matrix = None
 	max_matches = 1
 	load_old_matricies = True
+	sys_matrices = []
+	user_matrices = []
 	if len(sys.argv) > 1:
-		if len(sys.argv) >= 4:
+		if len(sys.argv) >= 5:
 			if sys.argv[1] == "--newMatricies" or sys.argv[1] == "-N":
 				row_len = int(sys.argv[2])
 				col_len = int(sys.argv[3])
-				print "generating new matricies of dimensions [", row_len, ", ", col_len, "] ..."
-				rand_matricies, rand_matrix_str_arr = gen_multi_matricies(2,4,4)
-				rand_matricies[1] = np.swapaxes(rand_matricies[1],0,1)
-				print "System matrix:"
-				print rand_matricies[0]
-				sys_matrix = rand_matricies[0]
-				print "User matrix:"
-				print rand_matricies[1]
-				user_matrix = rand_matricies[1]
-				save_matricies(rand_matrix_str_arr)
-				load_old_matricies = False
+				num_matrices = int(sys.argv[4])
+				if num_matrices % 2 == 0:
+					print "generating new matricies of dimensions [", row_len, ", ", col_len, "] ..."
+					rand_matricies, rand_matrix_str_arr = gen_multi_matricies(num_matrices,row_len,col_len)
+					sys_matrices = rand_matricies[:len(rand_matricies)/2]
+					user_matrices = [np.swapaxes(x,0,1) for x in rand_matricies[len(rand_matricies)/2:]]
+					print "Num system matrix:", len(sys_matrices)
+					print "Num user matrix:", len(user_matrices)
+					save_matricies(rand_matrix_str_arr)
+					load_old_matricies = False
+				else:
+					print "Error: num requested matrices should be even"
+					return 
 			else:
-				print "Error: usage; should be '$ main.py [--newMatricies/-N] [rowLen] [colLen]'"
+				print "Error: usage; should be '$ main.py [--newMatricies/-N] [rowLen] [colLen] [numMatrices]'"
 				return
-			if len(sys.argv) == 6:
-				if sys.argv[4] == "--maxMatches" or sys.argv[4] == "-M":
-					max_matches = int(sys.argv[5])
-			else:
-				print "Error: usage; should be '$ main.py [--newMatricies/-N] [rowLen] [colLen] [--maxMatches/-M] [maxMatches]'"
+			if len(sys.argv) == 7:
+				if sys.argv[5] == "--maxMatches" or sys.argv[5] == "-M":
+					max_matches = int(sys.argv[6])
+			elif load_old_matricies:
+				print "Error: usage; should be '$ main.py [--newMatricies/-N] [rowLen] [colLen] [numMatrices] [--maxMatches/-M] [maxMatches]'"
 				return
 		if len(sys.argv) == 3:
 			if sys.argv[1] == "--maxMatches" or sys.argv[1] == "-M":
@@ -78,21 +109,19 @@ def main():
 	if load_old_matricies:
 		print "using old matricies from files..."
 		old_matricies = read_matricies()
-		old_matricies[1] = np.swapaxes(old_matricies[1],0,1)
-		print "System matrix:"
-		print old_matricies[0]
-		sys_matrix = old_matricies[0]
-		print "User matrix:"
-		print old_matricies[1]
-		user_matrix = old_matricies[1]
-	result_matrix = run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches)
-	print "New algorithm result matrix:"
-	print result_matrix
-	gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix)
-	print "Gale Shapley result matrix:"
-	print gs_result_matrix
-	a1_sys_utility = compute_utility(sys_matrix, result_matrix)
-	print "sys utility:", a1_sys_utility
+		sys_matrices = old_matricies[:len(old_matricies)/2]
+		user_matrices = [np.swapaxes(x,0,1) for x in old_matricies[len(old_matricies)/2:]]
+		print "Num system matrix:", len(sys_matrices)
+		print "Num user matrix:", len(user_matrices)
+	run_large_scale_tests(sys_matrices, user_matrices, max_matches)
+	#result_matrix = run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches)
+	#print "New algorithm result matrix:"
+	#print result_matrix
+	#gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix)
+	#print "Gale Shapley result matrix:"
+	#print gs_result_matrix
+	#a1_sys_utility = compute_utility(sys_matrix, result_matrix)
+	#print "sys utility:", a1_sys_utility
 
 if __name__ == '__main__':
 	main()

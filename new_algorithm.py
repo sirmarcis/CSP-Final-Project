@@ -41,7 +41,7 @@ def run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches):
 			sys_col_heur_arr[sys_matrix_col_cntr] += mat_elt
 			sys_matrix_col_cntr+=1
 	finished_user_rows_dict = build_finished_rows_dict(len(user_matrix_list))
-	col_pref_order_arr = build_pref_order_arr(sys_col_heur_arr)
+	col_pref_order_arr = build_pref_order_arr(sys_col_heur_arr) # replace with a simple sort() call.... wtf dude...
 	inverse_finished_matrix_arr = build_heur_arr(len(sys_matrix_list))
 	for col_pref_elt in col_pref_order_arr: # for each column preference, in order, go over user matrix
 		curr_user_row_elt = 0

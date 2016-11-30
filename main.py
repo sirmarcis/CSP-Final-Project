@@ -10,32 +10,16 @@ def compute_utility(matrix1, matrix2):
 	# matrix 2 should be a result matrix
 	matrix1_list = matrix1.tolist()
 	matrix2_list = matrix2.tolist()
+	tot_utility = 0
 	row_cntr = 0
-	col_average_matrix_list = build_proposal_dict_list(matrix1_list)
-	col_averages = build_heur_arr(len(matrix1_list))
-	num_col_avg_vals = build_heur_arr(len(matrix1_list))
 	for m1_row_list in matrix1_list: # take all the utilities of the matches, aka non-zero values, based on matrix2
 		col_cntr = 0
 		for m1_elt in m1_row_list:
 			#print "comparing", matrix1_list[row_cntr][col_cntr], "to", matrix2_list[row_cntr][col_cntr]
 			if matrix2_list[row_cntr][col_cntr] != 0:
-				col_average_matrix_list[row_cntr].append(m1_elt)
-			else:
-				col_average_matrix_list[row_cntr].append(0)
+				tot_utility += m1_elt
 			col_cntr+=1
 		row_cntr +=1
-	for curr_row in col_average_matrix_list:
-		col_cntr = 0
-		for curr_elt in curr_row:
-			if curr_elt != 0:
-				col_averages[col_cntr] += curr_elt
-				num_col_avg_vals[col_cntr]+=1
-			col_cntr+=1
-	tot_utility = 0
-	col_cntr = 0
-	for col_val in col_averages:
-		tot_utility += (col_val / num_col_avg_vals[col_cntr])
-		col_cntr+=1
 	return tot_utility
 
 def print_matrices(matrix_list):
@@ -55,8 +39,8 @@ def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
 		curr_user_matrix = user_matrices[curr_matrix_cntr]
 		#curr_a1_result_matrix = run_sys_pref_col_heuristic(curr_sys_matrix, curr_user_matrix, max_matches)
 		curr_a1_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
-		print_matrices([curr_sys_matrix, curr_user_matrix, curr_a1_result_matrix])
 		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix)
+		print_matrices([curr_sys_matrix, curr_user_matrix, curr_gs_result_matrix])
 		curr_a1_rev_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches, reverse_order_p = True)
 		curr_a1_sys_utility = compute_utility(curr_sys_matrix, curr_a1_result_matrix)
 		avg_a1_sys_utility += curr_a1_sys_utility

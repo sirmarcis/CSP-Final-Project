@@ -34,25 +34,25 @@ def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
 	avg_gs_user_utility = 0
 	avg_a1_rev_sys_utility = 0
 	avg_a1_rev_user_utility = 0
-	while curr_matrix_cntr < len(sys_matrices):
+	while curr_matrix_cntr < len(sys_matrices): # good luck understanding any of this (NEEDS REFACTORING)
 		curr_sys_matrix = sys_matrices[curr_matrix_cntr]
 		curr_user_matrix = user_matrices[curr_matrix_cntr]
 		#curr_a1_result_matrix = run_sys_pref_col_heuristic(curr_sys_matrix, curr_user_matrix, max_matches)
 		curr_a1_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
-		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix)
+		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix, max_matches)
 		print_matrices([curr_sys_matrix, curr_user_matrix, curr_gs_result_matrix])
 		curr_a1_rev_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches, reverse_order_p = True)
-		curr_a1_sys_utility = compute_utility(curr_sys_matrix, curr_a1_result_matrix)
+		curr_a1_sys_utility = compute_utility(np.swapaxes(curr_sys_matrix,0,1), curr_a1_result_matrix)
 		avg_a1_sys_utility += curr_a1_sys_utility
-		curr_a1_user_utility = compute_utility(curr_user_matrix, curr_a1_result_matrix)
+		curr_a1_user_utility = compute_utility(np.swapaxes(curr_user_matrix,0,1), curr_a1_result_matrix)
 		avg_a1_user_utility+=curr_a1_user_utility
 		curr_gs_sys_utility = compute_utility(curr_sys_matrix, curr_gs_result_matrix)
 		avg_gs_sys_utility+=curr_gs_sys_utility
 		curr_gs_user_utility = compute_utility(curr_user_matrix, curr_gs_result_matrix)
 		avg_gs_user_utility+=curr_gs_user_utility
-		curr_a1_rev_sys_utility = compute_utility(curr_sys_matrix, curr_a1_rev_result_matrix)
+		curr_a1_rev_sys_utility = compute_utility(np.swapaxes(curr_sys_matrix,0,1), curr_a1_rev_result_matrix)
 		avg_a1_rev_sys_utility += curr_a1_rev_sys_utility
-		curr_a1_rev_user_utility = compute_utility(curr_user_matrix, curr_a1_rev_result_matrix)
+		curr_a1_rev_user_utility = compute_utility(np.swapaxes(curr_user_matrix,0,1), curr_a1_rev_result_matrix)
 		avg_a1_rev_user_utility += curr_a1_rev_user_utility
 		curr_matrix_cntr+=1		
 	avg_a1_sys_utility = avg_a1_sys_utility/curr_matrix_cntr
@@ -116,7 +116,7 @@ def main():
 	#result_matrix = run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches)
 	#print "New algorithm result matrix:"
 	#print result_matrix
-	#gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix)
+	#gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix, max_matches)
 	#print "Gale Shapley result matrix:"
 	#print gs_result_matrix
 	#a1_sys_utility = compute_utility(sys_matrix, result_matrix)

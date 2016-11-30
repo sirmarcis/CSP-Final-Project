@@ -71,16 +71,19 @@ def run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches, reverse_ord
 			curr_user_row_elt = 0
 			best_user_row_elt = 0 # position of the best system match in the user matrix
 			best_user_pref = 0
+			match_found_p = False
 			for curr_user_matrix_row in user_matrix_list: # pick most preferred column choice, based on user preference
 				curr_user_pref = curr_user_matrix_row[col_pref_elt]
 				if curr_user_pref > best_user_pref and len(finished_user_rows_dict[curr_user_row_elt]) < max_matches:
 					if col_pref_elt not in finished_user_rows_dict[curr_user_row_elt]:
 						best_user_pref = curr_user_pref
 						best_user_row_elt = curr_user_row_elt
+						match_found_p = True
 				curr_user_row_elt+=1
-			finished_user_rows_dict[best_user_row_elt].append(col_pref_elt)
-			#inverse_finished_matrix_arr[col_pref_elt] = curr_finished_matrix_col
-			inverse_finished_matrix_arr[col_pref_elt][best_user_row_elt] = 1 # counterintuitive, ik..
+			if match_found_p:
+				finished_user_rows_dict[best_user_row_elt].append(col_pref_elt)
+				#inverse_finished_matrix_arr[col_pref_elt] = curr_finished_matrix_col
+				inverse_finished_matrix_arr[col_pref_elt][best_user_row_elt] = 1 # counterintuitive, ik..
 			num_matches+=1
 	finished_matrix = np.swapaxes(build_matrix_from_arr(inverse_finished_matrix_arr), 0,1)
 	return finished_matrix

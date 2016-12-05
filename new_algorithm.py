@@ -12,10 +12,11 @@
 ## of the matching process.  
 ##
 ## Runtime Complexity: 
-## For both one to one and many to many matching, it is O(n^2), where n is the number of user or system agents.  This is the case
-## because no matter if we are searching for one or many matches for any user or system, we still go over the two matrices a static
-## number of times.  Once over the user matrix to compute the heuristic, once over the system matrix to find best matches, and
-## once over and n by n matrix to build the result matrix.  This results in a runtime of O(3*n^2), which simplifies to O(n^2).
+## It is O(m*n^2), where n is the number of user or system agents, and m is the max matches we are trying to make.
+## This is the case because we go over the entire user matrix once to get the hauristic to determine proposal order, O(n^2), 
+## from there we sort the preference list, O(n), and iterate over it, and for each iteration going over the current system 
+## preference list (of size n) m times to find a best avalible match, O(n*m*n).  Combining these runtimes we get 
+## O(n^2) + O(n) + O(n*m*n) = O((n^2)+n+m*n^2) = O(n+2*m*n^2), which simplifies to O(m*n^2).
 
 import numpy as np
 from matrix import build_matrix_from_arr

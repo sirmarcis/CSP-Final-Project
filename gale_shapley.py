@@ -13,16 +13,15 @@
 ## Runtime Complexity: 
 ## When max_matches is 1: O(n^2), where n is the number of system or user agents, or the length of one axis of either the 
 ## user_matrix or sys_matrix.  
-## When max_matches is > 1: O((m*n)^2), where m is max_matches.  This case is more computationally complex since we are going 
+## When max_matches is > 1: O(m*n^2), where m is max_matches.  This case is more computationally complex since we are going 
 ## over each proposer at most m times for every stable matching found.
 
 import numpy as np
 from new_algorithm import build_heur_arr
 from matrix import build_matrix_from_arr
 
-
 def build_unmatched_elts_dict(pref_order_list):
-	"""Called by run_gale_shapley"""
+	"""Called by run_gale_shapley, builds a dictionary with keys from 0 to n, and every value is 0."""
 	unmatched_elts_dict = {}
 	curr_elt = 0
 	while curr_elt < len(pref_order_list):
@@ -31,7 +30,7 @@ def build_unmatched_elts_dict(pref_order_list):
 	return unmatched_elts_dict
 
 def build_unmatched_elts_list(pref_order_list):
-	"""Called by run_gale_shapley"""
+	"""Called by run_gale_shapley, builds an n by n matrix array filled with elements 0 to n in each row."""
 	unmatched_elts_list = []
 	curr_elt = 0
 	while curr_elt < len(pref_order_list):
@@ -40,7 +39,7 @@ def build_unmatched_elts_list(pref_order_list):
 	return unmatched_elts_list
 
 def build_proposal_dict_list(pref_order_list):
-	"""Called by run_gale_shapley"""
+	"""Called by run_gale_shapley, builds an n by 0 2d array."""
 	proposal_dict_list = []
 	curr_elt = 0
 	while curr_elt < len(pref_order_list):
@@ -49,14 +48,14 @@ def build_proposal_dict_list(pref_order_list):
 	return proposal_dict_list
 
 def build_empty_final_matrix_arr(sys_pref_order_list):
-	"""Called by run_gale_shapley"""
+	"""Called by build_final_matrix, builds an empty n by n matrix array"""
 	empty_final_matrix_arr = []
 	for final_elt in sys_pref_order_list:
 		empty_final_matrix_arr.append(build_heur_arr(len(final_elt)))
 	return empty_final_matrix_arr
 
 def get_new_user_to_match(curr_sys_elt, sys_pref_order_list, proposal_dict_list):
-	"""Called by get_best_unmatched_user"""
+	"""Called by get_best_unmatched_user, gets the next unique user for the current system to propose to."""
 	curr_sys_pref_order = sys_pref_order_list[curr_sys_elt]
 	curr_user_elt = 0
 	best_user_elt = 0
@@ -71,7 +70,7 @@ def get_new_user_to_match(curr_sys_elt, sys_pref_order_list, proposal_dict_list)
 	return best_user_elt, has_proposal_p
 
 def get_best_unmatched_user(curr_sys_elt, sys_pref_order_list, user_pref_order_list, matched_user_elts_dict, proposal_dict_list, max_matches):
-	"""Called by run_gale_shapley"""
+	"""Called by run_gale_shapley, finds the next stable matching for curr_sys_elt and performs it."""
 	best_user_elt, has_proposal_p = get_new_user_to_match(curr_sys_elt, sys_pref_order_list, proposal_dict_list)
 	return_sys_to_matching = None
 	found_match_p = False
@@ -105,7 +104,6 @@ def build_final_matrix(sys_pref_order_list, matched_user_elts_dict):
 		for curr_sys_match_elt in matched_user_elts_dict[user_elt]:
 			final_matrix_arr[curr_sys_match_elt][user_elt] = 1
 	return build_matrix_from_arr(final_matrix_arr)
-
 
 def run_gale_shapley(sys_matrix, user_matrix, max_matches):
 	## A COMPLETE MANY TO MANY MATCHING DOES NOT ALWAYS EXIST

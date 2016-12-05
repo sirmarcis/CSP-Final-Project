@@ -9,6 +9,7 @@ from new_algorithm import run_new_algorithm, build_heur_arr
 from gale_shapley import run_gale_shapley, build_proposal_dict_list
 
 def compute_utility(matrix1, matrix2):
+	"""Called by run_large_scale_tests"""
 	# matrix 2 should be a result matrix
 	matrix1_list = matrix1.tolist()
 	matrix2_list = matrix2.tolist()
@@ -28,6 +29,7 @@ def print_matrices(matrix_list):
 		print curr_matrix
 
 def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
+	"""Called by main"""
 	curr_matrix_cntr = 0
 	avg_a1_sys_utility = 0
 	avg_a1_user_utility = 0
@@ -67,8 +69,6 @@ def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
 	print "new algorithm (reverse pref. order): average system utility:", avg_a1_rev_sys_utility, ", average combined user utility:", avg_a1_rev_user_utility
 
 def main():
-	sys_matrix = None
-	user_matrix = None
 	max_matches = 1
 	load_old_matricies = True
 	sys_matrices = []
@@ -114,14 +114,6 @@ def main():
 		print "Num system matrix:", len(sys_matrices)
 		print "Num user matrix:", len(user_matrices)
 	run_large_scale_tests(sys_matrices, user_matrices, max_matches)
-	#result_matrix = run_new_algorithm(sys_matrix, user_matrix, max_matches)
-	#print "New algorithm result matrix:"
-	#print result_matrix
-	#gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix, max_matches)
-	#print "Gale Shapley result matrix:"
-	#print gs_result_matrix
-	#a1_sys_utility = compute_utility(sys_matrix, result_matrix)
-	#print "sys utility:", a1_sys_utility
 
 if __name__ == '__main__':
 	main()

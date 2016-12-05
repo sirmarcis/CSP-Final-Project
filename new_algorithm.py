@@ -1,7 +1,27 @@
+## new_algorithm.py
+## written by Anders Maraviglia
+##
+## Algorithm Description:
+## We have two matrices as input to the main function, run_new_algorithm, which are sys_matrix and user_matrix.
+## The user_matrix represents the preferences of the agents being proposed to.
+## The sys_matrix represents the preferences of the agents doing the proposing.
+## Proposal order is determined by taking the sum of the utilities for each column in the user_matrix, which basically acts as a
+## "user desirability" with respect to users, and from this a list of systems is created, sorted by "desirability" in decending
+## order.  From this, each system then picks max_matches of their highest rated (avalible) users.  Note that each system and user
+## can have at most max_matches at any given time, but each system and user does not necessaraly have max_matches at the end
+## of the matching process.  
+##
+## Runtime Complexity: 
+## For both one to one and many to many matching, it is O(n^2), where n is the number of user or system agents.  This is the case
+## because no matter if we are searching for one or many matches for any user or system, we still go over the two matrices a static
+## number of times.  Once over the user matrix to compute the heuristic, once over the system matrix to find best matches, and
+## once over and n by n matrix to build the result matrix.  This results in a runtime of O(3*n^2), which simplifies to O(n^2).
+
 import numpy as np
 from matrix import build_matrix_from_arr
 
 def build_heur_arr(arr_len):
+	"""Called by run_new_algorithm and populate_sys_col_heur_arr"""
 	heur_arr = []
 	arr_cntr = 0
 	while arr_cntr < arr_len:
@@ -10,6 +30,7 @@ def build_heur_arr(arr_len):
 	return heur_arr
 
 def build_finished_rows_dict(num_elts):
+	"""Called by run_new_algorithm"""
 	finished_rows_dict = {}
 	curr_elt = 0
 	while curr_elt < num_elts:
@@ -18,6 +39,7 @@ def build_finished_rows_dict(num_elts):
 	return finished_rows_dict
 
 def build_pref_order_arr(heur_arr):
+	"""Called by run_new_algorithm"""
 	pref_order_arr = []
 	while len(pref_order_arr) < len(heur_arr):
 		heur_elt = 0
@@ -32,6 +54,7 @@ def build_pref_order_arr(heur_arr):
 	return pref_order_arr
 
 def populate_sys_col_heur_arr(sys_matrix_list):
+	"""Called by run_new_algorithm"""
 	sys_col_heur_arr = build_heur_arr(len(sys_matrix_list[0]))
 	for curr_row in sys_matrix_list: # go over each row
 		sys_matrix_col_cntr = 0
@@ -41,6 +64,7 @@ def populate_sys_col_heur_arr(sys_matrix_list):
 	return sys_col_heur_arr
 
 def build_finished_matrix_arr(matrix_list):
+	"""Called by run_new_algorithm"""
 	finished_matrix_arr = []
 	matrix_row_len = len(matrix_list[0])
 	matrix_elt = 0
@@ -51,28 +75,31 @@ def build_finished_matrix_arr(matrix_list):
 	return finished_matrix_arr
 
 def print_matrix_list(matrix_list):
+	"""Function used for testing"""
 	for matrix_row in matrix_list:
 		print matrix_row
 
-def run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches, reverse_order_p=False):
-	## In this function, the users are proposing to systems, so take that into account when inputting matrices
-	sys_matrix_list = sys_matrix.tolist() # use just the list version of the matrix for the moment
-	user_matrix_list = user_matrix.tolist()
-	sys_col_heur_arr = populate_sys_col_heur_arr(sys_matrix_list)
-	finished_user_rows_dict = build_finished_rows_dict(len(user_matrix_list))
+def run_new_algorithm(user_matrix, sys_matrix, max_matches, reverse_order_p=False):
+	"""Called by run_large_scale_tests in main.py, runs the greedy algorithm. 
+	user_matrix is the preference list matrix of the agents being proposed to,
+	sys_matrix is the preference list matrix of the proposing agents.  
+	Refer to the top of the file for an algorithm description."""
+	user_matrix_list = user_matrix.tolist() # use just the list version of the matrix for the moment
+	sys_matrix_list = sys_matrix.tolist()
+	sys_col_heur_arr = populate_sys_col_heur_arr(user_matrix_list)
+	finished_user_rows_dict = build_finished_rows_dict(len(sys_matrix_list))
 	col_pref_order_arr = build_pref_order_arr(sys_col_heur_arr)
 	if reverse_order_p:
 		col_pref_order_arr.reverse()
-	#inverse_finished_matrix_arr = build_heur_arr(len(sys_matrix_list))
-	inverse_finished_matrix_arr = build_finished_matrix_arr(sys_matrix_list)
+	inverse_finished_matrix_arr = build_finished_matrix_arr(user_matrix_list)
 	for col_pref_elt in col_pref_order_arr: # for each column preference, in order, go over user matrix
 		num_matches = 0
-		while num_matches < max_matches:
-			curr_user_row_elt = 0
+		while num_matches < max_matches: # find max_matches for each column preference
+			curr_user_row_elt = 0 # position of the current system in the user matrix
 			best_user_row_elt = 0 # position of the best system match in the user matrix
-			best_user_pref = 0
-			match_found_p = False
-			for curr_user_matrix_row in user_matrix_list: # pick most preferred column choice, based on user preference
+			best_user_pref = 0 # the actual utility value of the current best system match in the user matrix
+			match_found_p = False # to ensure we actually find a match (not garunteed)
+			for curr_user_matrix_row in sys_matrix_list: # pick most preferred column choice, based on user preference
 				curr_user_pref = curr_user_matrix_row[col_pref_elt]
 				if curr_user_pref > best_user_pref and len(finished_user_rows_dict[curr_user_row_elt]) < max_matches:
 					if col_pref_elt not in finished_user_rows_dict[curr_user_row_elt]:
@@ -82,16 +109,7 @@ def run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches, reverse_ord
 				curr_user_row_elt+=1
 			if match_found_p:
 				finished_user_rows_dict[best_user_row_elt].append(col_pref_elt)
-				#inverse_finished_matrix_arr[col_pref_elt] = curr_finished_matrix_col
 				inverse_finished_matrix_arr[col_pref_elt][best_user_row_elt] = 1 # counterintuitive, ik..
 			num_matches+=1
 	finished_matrix = np.swapaxes(build_matrix_from_arr(inverse_finished_matrix_arr), 0,1)
 	return finished_matrix
-
-def run_new_alg_lowest_first(sys_matrix, user_matrix, max_matches):
-	sys_matrix_list = sys_matrix.tolist() # use just the list version of the matrix for the moment
-	user_matrix_list = user_matrix.tolist()
-	sys_col_heur_arr = populate_sys_col_heur_arr(sys_matrix_list)
-	sys_col_heur_arr.sort() ## order sorted from least to greatest
-	finished_user_rows_dict = build_finished_rows_dict(len(user_matrix_list))
-	inverse_finished_matrix_arr = build_heur_arr(len(sys_matrix_list))

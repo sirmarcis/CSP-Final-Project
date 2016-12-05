@@ -1,9 +1,11 @@
+## main.py
+## written by Anders Maraviglia
+
 import numpy as np
-import random
-import os, sys
+import random, os, sys
 
 from matrix import gen_multi_matricies, save_matricies, read_matricies
-from new_algorithm import run_sys_pref_col_heuristic, build_heur_arr
+from new_algorithm import run_new_algorithm, build_heur_arr
 from gale_shapley import run_gale_shapley, build_proposal_dict_list
 
 def compute_utility(matrix1, matrix2):
@@ -15,7 +17,6 @@ def compute_utility(matrix1, matrix2):
 	for m1_row_list in matrix1_list: # take all the utilities of the matches, aka non-zero values, based on matrix2
 		col_cntr = 0
 		for m1_elt in m1_row_list:
-			#print "comparing", matrix1_list[row_cntr][col_cntr], "to", matrix2_list[row_cntr][col_cntr]
 			if matrix2_list[row_cntr][col_cntr] != 0:
 				tot_utility += m1_elt
 			col_cntr+=1
@@ -37,11 +38,11 @@ def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
 	while curr_matrix_cntr < len(sys_matrices): # good luck understanding any of this (NEEDS REFACTORING)
 		curr_sys_matrix = sys_matrices[curr_matrix_cntr]
 		curr_user_matrix = user_matrices[curr_matrix_cntr]
-		#curr_a1_result_matrix = run_sys_pref_col_heuristic(curr_sys_matrix, curr_user_matrix, max_matches)
-		curr_a1_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
+		#curr_a1_result_matrix = run_new_algorithm(curr_sys_matrix, curr_user_matrix, max_matches)
+		curr_a1_result_matrix = run_new_algorithm(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
 		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix, max_matches)
-		print_matrices([curr_sys_matrix, curr_user_matrix, curr_gs_result_matrix])
-		curr_a1_rev_result_matrix = run_sys_pref_col_heuristic(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches, reverse_order_p = True)
+		#print_matrices([curr_sys_matrix, curr_user_matrix, curr_gs_result_matrix])
+		curr_a1_rev_result_matrix = run_new_algorithm(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches, reverse_order_p = True)
 		curr_a1_sys_utility = compute_utility(np.swapaxes(curr_sys_matrix,0,1), curr_a1_result_matrix)
 		avg_a1_sys_utility += curr_a1_sys_utility
 		curr_a1_user_utility = compute_utility(np.swapaxes(curr_user_matrix,0,1), curr_a1_result_matrix)
@@ -113,7 +114,7 @@ def main():
 		print "Num system matrix:", len(sys_matrices)
 		print "Num user matrix:", len(user_matrices)
 	run_large_scale_tests(sys_matrices, user_matrices, max_matches)
-	#result_matrix = run_sys_pref_col_heuristic(sys_matrix, user_matrix, max_matches)
+	#result_matrix = run_new_algorithm(sys_matrix, user_matrix, max_matches)
 	#print "New algorithm result matrix:"
 	#print result_matrix
 	#gs_result_matrix = run_gale_shapley(sys_matrix, user_matrix, max_matches)

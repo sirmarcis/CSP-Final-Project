@@ -4,69 +4,8 @@
 import numpy as np
 import random, os, sys
 
-from matrix import gen_multi_matricies, save_matricies, read_matricies
-from new_algorithm import run_new_algorithm, build_heur_arr
-from gale_shapley import run_gale_shapley, build_proposal_dict_list
-
-def compute_utility(matrix1, matrix2):
-	"""Called by run_large_scale_tests"""
-	# matrix 2 should be a result matrix
-	matrix1_list = matrix1.tolist()
-	matrix2_list = matrix2.tolist()
-	tot_utility = 0
-	row_cntr = 0
-	for m1_row_list in matrix1_list: # take all the utilities of the matches, aka non-zero values, based on matrix2
-		col_cntr = 0
-		for m1_elt in m1_row_list:
-			if matrix2_list[row_cntr][col_cntr] != 0:
-				tot_utility += m1_elt
-			col_cntr+=1
-		row_cntr +=1
-	return tot_utility
-
-def print_matrices(matrix_list):
-	for curr_matrix in matrix_list:
-		print curr_matrix
-
-def run_large_scale_tests(sys_matrices, user_matrices, max_matches):
-	"""Called by main"""
-	curr_matrix_cntr = 0
-	avg_a1_sys_utility = 0
-	avg_a1_user_utility = 0
-	avg_gs_sys_utility = 0
-	avg_gs_user_utility = 0
-	avg_a1_rev_sys_utility = 0
-	avg_a1_rev_user_utility = 0
-	while curr_matrix_cntr < len(sys_matrices): # good luck understanding any of this (NEEDS REFACTORING)
-		curr_sys_matrix = sys_matrices[curr_matrix_cntr]
-		curr_user_matrix = user_matrices[curr_matrix_cntr]
-		#curr_a1_result_matrix = run_new_algorithm(curr_sys_matrix, curr_user_matrix, max_matches)
-		curr_a1_result_matrix = run_new_algorithm(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches)
-		curr_gs_result_matrix = run_gale_shapley(curr_sys_matrix, curr_user_matrix, max_matches)
-		#print_matrices([curr_sys_matrix, curr_user_matrix, curr_gs_result_matrix])
-		curr_a1_rev_result_matrix = run_new_algorithm(np.swapaxes(curr_user_matrix,0,1), np.swapaxes(curr_sys_matrix,0,1), max_matches, reverse_order_p = True)
-		curr_a1_sys_utility = compute_utility(np.swapaxes(curr_sys_matrix,0,1), curr_a1_result_matrix)
-		avg_a1_sys_utility += curr_a1_sys_utility
-		curr_a1_user_utility = compute_utility(np.swapaxes(curr_user_matrix,0,1), curr_a1_result_matrix)
-		avg_a1_user_utility+=curr_a1_user_utility
-		curr_gs_sys_utility = compute_utility(curr_sys_matrix, curr_gs_result_matrix)
-		avg_gs_sys_utility+=curr_gs_sys_utility
-		curr_gs_user_utility = compute_utility(curr_user_matrix, curr_gs_result_matrix)
-		avg_gs_user_utility+=curr_gs_user_utility
-		curr_a1_rev_sys_utility = compute_utility(np.swapaxes(curr_sys_matrix,0,1), curr_a1_rev_result_matrix)
-		avg_a1_rev_sys_utility += curr_a1_rev_sys_utility
-		curr_a1_rev_user_utility = compute_utility(np.swapaxes(curr_user_matrix,0,1), curr_a1_rev_result_matrix)
-		avg_a1_rev_user_utility += curr_a1_rev_user_utility
-		curr_matrix_cntr+=1		
-	avg_a1_sys_utility = avg_a1_sys_utility/curr_matrix_cntr
-	avg_a1_user_utility = avg_a1_user_utility/curr_matrix_cntr
-	avg_gs_sys_utility = avg_gs_sys_utility/curr_matrix_cntr
-	avg_gs_user_utility = avg_gs_user_utility/curr_matrix_cntr
-	avg_a1_rev_sys_utility = avg_a1_rev_sys_utility/curr_matrix_cntr
-	avg_a1_rev_user_utility = avg_a1_rev_user_utility/curr_matrix_cntr
-	print "gale shapley: average System utility:", avg_gs_sys_utility, ", average combined user utility:", avg_gs_user_utility
-	print "new algorithm: average System utility:", avg_a1_sys_utility, ", average combined user utility:", avg_a1_user_utility
-	print "new algorithm (reverse pref. order): average system utility:", avg_a1_rev_sys_utility, ", average combined user utility:", avg_a1_rev_user_utility
+from matrix import save_matricies, read_matricies
+from test_suite import gen_new_sys_user_matrices, run_large_scale_tests, run_full_test_set
 
 def main():
 	max_matches = 1
@@ -80,10 +19,8 @@ def main():
 				col_len = int(sys.argv[3])
 				num_matrices = int(sys.argv[4])
 				if num_matrices % 2 == 0:
-					print "generating new matricies of dimensions [", row_len, ", ", col_len, "] ..."
-					rand_matricies, rand_matrix_str_arr = gen_multi_matricies(num_matrices,row_len,col_len)
-					sys_matrices = rand_matricies[:len(rand_matricies)/2]
-					user_matrices = [np.swapaxes(x,0,1) for x in rand_matricies[len(rand_matricies)/2:]]
+					rand_matrix_str_arr = []
+					sys_matrices, user_matrices = gen_new_sys_user_matrices(num_matrices, row_len, col_len, rand_matrix_str_arr = rand_matrix_str_arr)
 					print "Num system matrix:", len(sys_matrices)
 					print "Num user matrix:", len(user_matrices)
 					save_matricies(rand_matrix_str_arr)
@@ -103,6 +40,17 @@ def main():
 		if len(sys.argv) == 3:
 			if sys.argv[1] == "--maxMatches" or sys.argv[1] == "-M":
 				max_matches = int(sys.argv[2])
+			elif (sys.argv[1] ==  "--runTestSet" or sys.argv[1] == "-R") and sys.argv[2] == "--extended":
+				print "running full (extended) test set"
+				load_old_matricies = False
+				run_full_test_set(extended_p = True)
+				return
+		elif len(sys.argv) == 2:
+			if sys.argv[1] == "--runTestSet" or sys.argv[1] == "-R":
+				print "running full test set"
+				load_old_matricies = False
+				run_full_test_set()
+				return 
 		elif load_old_matricies:
 			print "Error: usage; should be '$ main.py [--maxMatches/-M] [maxMatches]'"
 			return	

@@ -1,0 +1,97 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: CSP final project.aux
+The style file: IIE.bst
+Database file #1: CAREER2014.bib
+Repeated entry---line 745 of file CAREER2014.bib
+ : @article{rusmevichientong2010dynamic
+ :                                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 787 of file CAREER2014.bib
+ : @article{rusmevichientong2010dynamic
+ :                                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1113 of file CAREER2014.bib
+ : @article{bracken1973mathematical
+ :                                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2785 of file CAREER2014.bib
+ : @article{powell2000value
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2873 of file CAREER2014.bib
+ : @article{agatz2012optimization
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2895 of file CAREER2014.bib
+ : @article{li2014share
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3515 of file CAREER2014.bib
+ : @article{agatz2012optimization
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 3855 of file CAREER2014.bib
+ : @article{powell2000value
+ :                         ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4065 of file CAREER2014.bib
+ : 
+ : @article{hui1991perceived,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 4083 of file CAREER2014.bib
+ : 
+ : @article{winter2006ad,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 4181 of file CAREER2014.bib
+ : @article{li2014share
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 4815 of file CAREER2014.bib
+ : @article{powell2000value
+ :                         ,
+I'm skipping whatever remains of this entry
+You've used 64 entries,
+            2204 wiz_defined-function locations,
+            862 strings with 14994 characters,
+and the built_in function-call counts, 22477 in all, are:
+= -- 2380
+> -- 943
+< -- 11
++ -- 403
+- -- 326
+* -- 1977
+:= -- 3793
+add.period$ -- 72
+call.type$ -- 64
+change.case$ -- 291
+chr.to.int$ -- 0
+cite$ -- 64
+duplicate$ -- 816
+empty$ -- 1728
+format.name$ -- 326
+if$ -- 4671
+int.to.chr$ -- 0
+int.to.str$ -- 64
+missing$ -- 66
+newline$ -- 264
+num.names$ -- 128
+pop$ -- 322
+preamble$ -- 1
+purify$ -- 291
+quote$ -- 0
+skip$ -- 541
+stack$ -- 0
+substring$ -- 1584
+swap$ -- 145
+text.length$ -- 11
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 248
+warning$ -- 0
+while$ -- 236
+width$ -- 66
+write$ -- 645
+(There were 12 error messages)

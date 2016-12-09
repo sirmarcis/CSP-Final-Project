@@ -5,19 +5,14 @@ An implementation of Gale-Shapely plus a new, more heuristic based approach to m
 
 You need numpy in order to run the code.
 
-On Ubuntu, run the commands 'sudo pip install --upgrade pip', then run 'sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose'.  The second command takes a while..
+On Ubuntu, run the commands `sudo pip install --upgrade pip`, then run `sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose`.  The second command takes a while..
 
 ## Usage 
 
-There are two ways to run the application.  One is just by running the script with no arguments, like '$ python main.py'.  The other is to generate random system and user matricies at runtime by adding the flag '-N' or '--newMatricies', followed by row and column length, for example: '$ python main.py -N 4 4'.
+There are several ways to run the application.  
+* One is just by running the script with no arguments, like `python main.py`.  
+* Another is to generate random system and user matricies at runtime by adding the flag '-N' or '--newMatricies', followed by row and column length, and then the number of matrices to generate.  For example: `python main.py -N 4 4 200`.  
+* You can also specify the number of matches in many to many matching to look for by adding the flag `[--maxMatches/-M]` and then the number of matches.  For example: `python main.py -N 4 4 200 -M 2`
+* It is also possible to run the large scale test set referenced in the final paper using the command `python main.py [--runTestSet/-R]`. 
 
-## Current Issues (Notes)
 
-When the male to female proposal paradigm is set for both the new algorithm and GS, GS consistently ranks at a higher utility than the new algorithm.  How can we fix this? However, after modifications and testing for many to many matching is done, will the results still be as bad?
-
-Options:
-- Calculate heuristic differently
-	-- Calculate same way but on users instead of systems
-	-- Find the median utility instead of the sum (try for both system and user, but what would be tie breaker?)
-	-- Look into Boston algorithm mentioned by Prof
-- Sort proposal order differently based on heuristic (highest to lowest right now, maybe lowest to highest?)

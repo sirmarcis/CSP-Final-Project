@@ -387,7 +387,19 @@ The single level formulation is similar to the bilevel formulation except that i
 The proposed single level framework is a mixed integer programming (MIP) and numerous algorithms and solvers exist that solves the MIP very efficiently in reasonable time. We used branch and bound technique to solve this in MATLAB [cite code used]. Experiments of different sizes have been tested and the results are compared to the results of the bilevel optimization. A comparison of hundred iterations of recommendations of 5 alternatives to 5 agents is shown in the figure (\ref{fig:comparision}) where the $U$ and the $C$ matrices are randomly generated. However, as illustrated in the figure, the leader's objective function of the single level optimization is near optimal. Moreover, inconsistencies occur for the follower's objective function in single level solution (i.e., some times lower and some times higher). Therefore, we study other heuristics and compare the performances. 
 
 \section{Heuristic 2, greedy method}
-[Ander's writings]
+We also tested an alternative to the bilevel optimization framework, which attempted to reconcile deferred acceptance algorithms like Gale Shapley with the greedy algorithm paradigm in order to maximize system performance at the sacrifice of social welfare utility.  It should be noted that in doing so the stable matching requirements held as being a central property in deferred acceptance algorithms are not a concern for ours.  Also note that the susceptibility of our greedy algorithm to manipulation was not evaluated, in order to focus efforts on examining the algorithms potential viability.  
+
+In order to evaluate the greedy algorithms effectiveness, we decided to use the Gale Shapley algorithm as a baseline and compare its system performance and social welfare to that of our algorithm.  However, we had to adapt Gale Shapley to accommodate for many to many matching. 
+
+\subsection{Greedy Algorithm for Many to Many Matching}
+
+	\subsection{Example}
+
+\subsection{Gale Shapley Algorithm Adaptation for Many to Many Matching}
+
+	\subsection{Example}
+
+\subsection{Experiment Results}
 
 %\subsection{insights}
 %1- How much misalignment is ok to still get the same solution out of both methods	

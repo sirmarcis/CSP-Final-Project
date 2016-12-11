@@ -1,13 +1,13 @@
-# CSP-Final-Project
-An implementation of Gale-Shapely plus a new, more heuristic based approach to matching
+# CSP-Final-Project #
+An implementation of Gale-Shapely plus a new, more heuristic based approach to matching.  Refer to the final paper, section 4, for more details.
 
-## Dependencies
+## Dependencies ##
 
 You need numpy in order to run the code.
 
 On Ubuntu, run the commands `sudo pip install --upgrade pip`, then run `sudo apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose`.  The second command takes a while..
 
-## Usage 
+## Usage ##
 
 There are several ways to run the application.  
 * One is just by running the script with no arguments, like `python main.py`.  

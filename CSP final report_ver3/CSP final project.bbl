@@ -1,0 +1,374 @@
+\begin{thebibliography}{10}
+
+\bibitem{adomavicius2005toward}
+ Adomavicius, G., and Tuzhilin, A.,
+\newblock ``Toward the next generation of recommender systems: A survey of the
+  state-of-the-art and possible extensions,'' {\em IEEE Transactions on
+  Knowledge and Data Engineering}, 17, 6, 734--749 (2005).
+
+\bibitem{agatz2012optimization}
+ Agatz, N., Erera, A., Savelsbergh, M., and Wang, X.,
+\newblock ``Optimization for dynamic ride-sharing: a review,'' {\em European
+  Journal of Operational Research}, 223, 2, 295--303 (2012).
+
+\bibitem{allen2015sharing}
+ Allen, D.,
+\newblock ``The sharing economy,'' {\em Review-Institute of Public Affairs},
+  67, 3, 24 (2015).
+
+\bibitem{amatriain2011data}
+ Amatriain, X., Jaimes, A., Oliver, N., and Pujol, J.~M.,
+\newblock ``Data mining methods for recommender systems,'' In {\em Recommender
+  Systems Handbook},  39--71. Springer (2011).
+
+\bibitem{audet1997links}
+ Audet, C., Hansen, P., Jaumard, B., and Savard, G.,
+\newblock ``Links between linear bilevel and mixed 0--1 programming problems,''
+  {\em Journal of Optimization Theory and Applications}, 93, 2, 273--300
+  (1997).
+
+\bibitem{bard1998practical}
+ Bard, J.~F.,
+\newblock {\em Practical bilevel optimization: algorithms and applications},
+  volume~30,
+\newblock Springer Science \& Business Media (1998).
+
+\bibitem{bard2013practical}
+ Bard, J.~F.,
+\newblock {\em Practical bilevel optimization: algorithms and applications},
+  volume~30,
+\newblock Springer Science \& Business Media (2013).
+
+\bibitem{bardhi2012access}
+ Bardhi, F., and Eckhardt, G.~M.,
+\newblock ``Access-based consumption: the case of car sharing,'' {\em Journal
+  of Consumer Research}, 39, 4, 881--898 (2012).
+
+\bibitem{belk2014you}
+ Belk, R.,
+\newblock ``You are what you can access: sharing and collaborative consumption
+  online,'' {\em Journal of Business Research}, 67, 8, 1595--1600 (2014).
+
+\bibitem{benjaafar2015peer}
+ Benjaafar, S., Kong, G.~C., Li, X., and Courcoubetis, C.,
+\newblock ``Peer-to-peer product sharing: Implications for ownership, usage and
+  social welfare in the sharing economy,'' {\em Working Paper} (2015).
+
+\bibitem{bernstein2015dynamic}
+ Bernstein, F., K{\"o}k, A.~G., and Xie, L.,
+\newblock ``Dynamic assortment customization with limited inventories,'' {\em
+  Manufacturing \& Service Operations Management}, 17, 4, 538--553 (2015).
+
+\bibitem{bracken1973mathematical}
+ Bracken, J., and McGill, J.~T.,
+\newblock ``Mathematical programs with optimization problems in the
+  constraints,'' {\em Operations Research}, 21, 1, 37--44 (1973).
+
+\bibitem{brotcorne2001bilevel}
+ Brotcorne, L., Labb{\'e}, M., Marcotte, P., and Savard, G.,
+\newblock ``A bilevel model for toll optimization on a multicommodity
+  transportation network,'' {\em Transportation Science}, 35, 4, 345--358
+  (2001).
+
+\bibitem{candler1977multi}
+ Candler, W., and Norton, R.,
+\newblock {\em Multi-level programming and development policy},
+\newblock The World Bank (1977).
+
+\bibitem{colson2007overview}
+ Colson, B., Marcotte, P., and Savard, G.,
+\newblock ``An overview of bilevel optimization,'' {\em Annals of operations
+  research}, 153, 1, 235--256 (2007).
+
+\bibitem{condliff1999bayesian}
+ Condliff, M.~K., Lewis, D.~D., Madigan, D., and Posse, C.,
+\newblock ``Bayesian mixed-effects models for recommender systems,'' In {\em
+  ACM SIGIR’99 Workshop on Recommender Systems: Algorithms and Evaluation},
+  volume~15. Citeseer (1999).
+
+\bibitem{corciolani2014gift}
+ Corciolani, M., and Dalli, D.,
+\newblock ``Gift-giving, sharing and commodity exchange at Bookcrossing.com.
+  New insights from a qualitative analysis,'' {\em Management Decision}, 52, 4,
+  7--7 (2014).
+
+\bibitem{cullen2014outsourcing}
+ Cullen, Z., and Farronato, C.,
+\newblock ``Outsourcing tasks online: Matching supply and demand on
+  peer-to-peer internet platforms,'' {\em Working Paper} (2014).
+
+\bibitem{deakin2010markets}
+ Deakin, E., Frick, K.~T., and Shively, K.~M.,
+\newblock ``Markets for dynamic ridesharing?,'' {\em Transportation Research
+  Record: Journal of the Transportation Research Board}, 2187, 1, 131--137
+  (2010).
+
+\bibitem{delgadillo2010analysis}
+ Delgadillo, A., Arroyo, J.~M., and Alguacil, N.,
+\newblock ``Analysis of electric grid interdiction with line switching,'' {\em
+  IEEE Transactions on Power Systems}, 25, 2, 633--641 (2010).
+
+\bibitem{dempe2016solution}
+ Dempe, S., and Franke, S.,
+\newblock ``On the solution of convex bilevel optimization problems,'' {\em
+  Computational Optimization and Applications}, 63, 3, 685--703 (2016).
+
+\bibitem{ekstrand2011collaborative}
+ Ekstrand, M.~D., Riedl, J.~T., and Konstan, J.~A.,
+\newblock ``Collaborative filtering recommender systems,'' {\em Foundations and
+  Trends in Human-Computer Interaction}, 4, 2, 81--173 (2011).
+
+\bibitem{farahani2013review}
+ Farahani, R.~Z., Miandoabchi, E., Szeto, W.~Y., and Rashidi, H.,
+\newblock ``A review of urban transportation network design problems,'' {\em
+  European Journal of Operational Research}, 229, 2, 281--302 (2013).
+
+\bibitem{feldman2015capacity}
+ Feldman, J.~B., and Topaloglu, H.,
+\newblock ``Capacity constraints across nests in assortment optimization under
+  the nested logit model,'' {\em Operations Research}, 63, 4, 812--822 (2015).
+
+\bibitem{fourer1993ampl}
+ Fourer, R., Gay, D., and Kernighan, B.,
+\newblock {\em Ampl}, volume 117,
+\newblock Boyd \& Fraser Danvers, MA (1993).
+
+\bibitem{fradkin2015bias}
+ Fradkin, A., Grewal, E., Holtz, D., and Pearson, M.,
+\newblock ``Bias and reciprocity in online reviews: Evidence from field
+  experiments on airbnb,'' In {\em Proceedings of the Sixteenth ACM Conference
+  on Economics and Computation},  641--641. ACM (2015).
+
+\bibitem{frangioni1995new}
+ Frangioni, A.,
+\newblock ``On a new class of bilevel programming problems and its use for
+  reformulating mixed integer problems,'' {\em European Journal of Operational
+  Research}, 82, 3, 615--646 (1995).
+
+\bibitem{furuhata2013ridesharing}
+ Furuhata, M., Dessouky, M., Ord{\'o}{\~n}ez, F., Brunet, M.-E., Wang, X., and
+  Koenig, S.,
+\newblock ``Ridesharing: the state-of-the-art and future directions,'' {\em
+  Transportation Research Part B: Methodological}, 57, 28--46 (2013).
+
+\bibitem{gale1962college}
+ Gale, D., and Shapley, L.~S.,
+\newblock ``College admissions and the stability of marriage,'' {\em The
+  American Mathematical Monthly}, 69, 1, 9--15 (1962).
+
+\bibitem{gallego2014general}
+ Gallego, G., Ratliff, R., and Shebalov, S.,
+\newblock ``A general attraction model and sales-based linear program for
+  network revenue management under customer choice,'' {\em Operations
+  Research}, 63, 1, 212--232 (2014).
+
+\bibitem{gallego2014constrained}
+ Gallego, G., and Topaloglu, H.,
+\newblock ``Constrained assortment optimization for the nested logit model,''
+  {\em Management Science}, 60, 10, 2583--2601 (2014).
+
+\bibitem{gao2005solution}
+ Gao, Z., Wu, J., and Sun, H.,
+\newblock ``Solution algorithm for the bi-level discrete network design
+  problem,'' {\em Transportation Research Part B: Methodological}, 39, 6,
+  479--495 (2005).
+
+\bibitem{hampshire2011peer}
+ Hampshire, R.~C., and Gaites, C.,
+\newblock ``Peer-to-peer carsharing,'' {\em Transportation Research Record:
+  Journal of the Transportation Research Board}, 2217, 1, 119--126 (2011).
+
+\bibitem{hampshiresinhasimulation}
+ Hampshire, R.~C., and Sinha, S.,
+\newblock ``A simulation study of peer-to-peer carsharing,'' In {\em 2011 IEEE
+  Forum on Integrated and Sustainable Transportation System (FISTS)},  159--163
+  (2011).
+
+\bibitem{jiang2016collaborative}
+ Jiang, B., and Tian, L.,
+\newblock ``Collaborative Consumption: Strategic and Economic Implications of
+  Product Sharing,'' {\em Working Paper, available at SSRN 2561907} (2016).
+
+\bibitem{johari2016know}
+ Johari, R., Kamble, V., and Kanoria, Y.,
+\newblock ``Know your customer: Multi-armed bandits with capacity
+  constraints,'' {\em Working Paper available at arXiv preprint
+  arXiv:1603.04549} (2016).
+
+\bibitem{johnson1998growth}
+ Johnson, M., Herrmann, A., and Huber, F.,
+\newblock ``Growth through product-sharing services,'' {\em Journal of Service
+  Research}, 1, 167--177 (1998).
+
+\bibitem{kleiner2011mechanism}
+ Kleiner, A., Nebel, B., Ziparo, V.~A., and Srl, A.,
+\newblock ``A mechanism for dynamic ride sharing based on parallel auctions,''
+  In {\em Procedings of the Twenty-Second International Joint Conference on
+  Artificial Intelligence},  266--272 (2011).
+
+\bibitem{kok2015assortment}
+ K{\"o}k, A.~G., Fisher, M.~L., and Vaidyanathan, R.,
+\newblock ``Assortment planning: Review of literature and industry practice,''
+  In {\em Retail supply chain management},  175--236. Springer (2015).
+
+\bibitem{kunnumkal2010new}
+ Kunnumkal, S., and Topaloglu, H.,
+\newblock ``A new dynamic programming decomposition method for the network
+  revenue management problem with customer choice behavior,'' {\em Production
+  and Operations Management}, 19, 5, 575--590 (2010).
+
+\bibitem{lewis2012p2p}
+ Lewis, A., and Simmons, M.,
+\newblock ``P2P carsharing service design: informing user experience
+  development,'' Master's thesis, Sustainable Product-Service System
+  Innovation, School of Engineering, Blekinge Institute of Technology,
+  Karlskrona, Sweden (2012).
+
+\bibitem{li2014share}
+ Li, B., Krushinsky, D., Reijers, H.~A., and Van~Woensel, T.,
+\newblock ``The share-a-ride problem: People and parcels sharing taxis,'' {\em
+  European Journal of Operational Research}, 238, 1, 31--40 (2014).
+
+\bibitem{lim2007algorithms}
+ Lim, C., and Smith, J.~C.,
+\newblock ``Algorithms for discrete and continuous multicommodity flow network
+  interdiction problems,'' {\em IIE Transactions}, 39, 1, 15--26 (2007).
+
+\bibitem{lops2011content}
+ Lops, P., De~Gemmis, M., and Semeraro, G.,
+\newblock ``Content-based recommender systems: State of the art and trends,''
+  In {\em Recommender Systems Handbook},  73--105. Springer (2011).
+
+\bibitem{marcotte1986network}
+ Marcotte, P.,
+\newblock ``Network design problem with congestion effects: A case of bilevel
+  programming,'' {\em Mathematical programming}, 34, 2, 142--162 (1986).
+
+\bibitem{moore1990mixed}
+ Moore, J.~T., and Bard, J.~F.,
+\newblock ``The mixed integer linear bilevel programming problem,'' {\em
+  Operations Research}, 38, 5, 911--921 (1990).
+
+\bibitem{murphy2016shared}
+ Murphy, C.,
+\newblock ``Shared Mobility and the Transformation of Public Transit,'' {\em
+  The National Academies Transportation Research Board TCRP J-11/TASK 21}
+  (2016).
+
+\bibitem{pazzani2007content}
+ Pazzani, M.~J., and Billsus, D.,
+\newblock ``Content-based recommendation systems,'' In {\em The adaptive web},
+  325--341. Springer (2007).
+
+\bibitem{powell2000value}
+ Powell, W.~B., Towns, M.~T., and Marar, A.,
+\newblock ``On the value of optimal myopic solutions for dynamic routing and
+  scheduling problems in the presence of user noncompliance,'' {\em
+  Transportation Science}, 34, 1, 67--85 (2000).
+
+\bibitem{resnick1997recommender}
+ Resnick, P., and Varian, H.~R.,
+\newblock ``Recommender systems,'' {\em Communications of the ACM}, 40, 3,
+  56--58 (1997).
+
+\bibitem{roughgarden2005selfish}
+ Roughgarden, T.,
+\newblock {\em Selfish routing and the price of anarchy},
+\newblock MIT Press Cambridge (2005).
+
+\bibitem{rusmevichientong2010dynamic}
+ Rusmevichientong, P., Shen, Z.~M., and Shmoys, D.~B.,
+\newblock ``Dynamic assortment optimization with a multinomial logit choice
+  model and capacity constraint,'' {\em Operations Research}, 58, 6, 1666--1680
+  (2010).
+
+\bibitem{saure2013optimal}
+ Saur{\'e}, D., and Zeevi, A.,
+\newblock ``Optimal dynamic assortment planning with demand learning,'' {\em
+  Manufacturing \& Service Operations Management}, 15, 3, 387--404 (2013).
+
+\bibitem{scaparra2008bilevel}
+ Scaparra, M.~P., and Church, R.~L.,
+\newblock ``A bilevel mixed-integer program for critical infrastructure
+  protection planning,'' {\em Computers \& Operations Research}, 35, 6,
+  1905--1923 (2008).
+
+\bibitem{schafer2007collaborative}
+ Schafer, J.~B., Frankowski, D., Herlocker, J., and Sen, S.,
+\newblock ``Collaborative filtering recommender systems,'' In {\em The adaptive
+  web},  291--324. Springer (2007).
+
+\bibitem{shaheen2013carsharing}
+ Shaheen, S.~A., and Cohen, A.~P.,
+\newblock ``Carsharing and personal vehicle services: worldwide market
+  developments and emerging trends,'' {\em International Journal of Sustainable
+  Transportation}, 7, 1, 5--34 (2013).
+
+\bibitem{steininger2014extending}
+ Steininger, K.~W., and Bachner, G.,
+\newblock ``Extending car-sharing to serve commuters: an implementation in
+  Austria,'' {\em Ecological Economics}, 101, 64--66 (2014).
+
+\bibitem{stiglic2016making}
+ Stiglic, M., Agatz, N., Savelsbergh, M., and Gradisar, M.,
+\newblock ``Making dynamic ride-sharing work: The impact of driver and rider
+  flexibility,'' {\em Transportation Research Part E: Logistics and
+  Transportation Review}, 91, 190--207 (2016).
+
+\bibitem{sullivan2014convex}
+ Sullivan, K.~M., Smith, J.~C., and Morton, D.~P.,
+\newblock ``Convex hull representation of the deterministic bipartite network
+  interdiction problem,'' {\em Mathematical Programming}, 145, 1-2, 349--376
+  (2014).
+
+\bibitem{topaloglu2013joint}
+ Topaloglu, H.,
+\newblock ``Joint stocking and product offer decisions under the multinomial
+  logit model,'' {\em Production and Operations Management}, 22, 5, 1182--1199
+  (2013).
+
+\bibitem{von1952theory}
+ Von~Stackelberg, H.,
+\newblock {\em The theory of the market economy},
+\newblock Oxford University Press (1952).
+
+\bibitem{wang2014stable}
+ Wang, X., Agatz, N., and Erera, A.,
+\newblock ``Stable matching for dynamic ride-sharing systems,'' {\em ERIM
+  Report Series Reference No. ERS-2015-006-LIS} (2014).
+
+\bibitem{winter2006ad}
+ Winter, S., and Nittel, S.,
+\newblock ``Ad hoc shared ride trip planning by mobile geosensor networks,''
+  {\em International Journal of Geographical Information Science}, 20, 8,
+  899--916 (2006).
+
+\bibitem{xing2009smize}
+ Xing, X., Warden, T., Nicolai, T., and Herzog, O.,
+\newblock ``SMIZE: a spontaneous ride-sharing system for individual urban
+  transit,'' In {\em Multiagent System Technologies},  165--176. Springer
+  (2009).
+
+\bibitem{xu2012three}
+ Xu, P.,
+\newblock {\em Three essays on bilevel optimization algorithms and
+  applications},
+\newblock PhD thesis, Iowa State University (2012).
+
+\bibitem{zeng2014solving}
+ Zeng, B., and An, Y.,
+\newblock ``Solving bilevel mixed integer program by reformulations and
+  decomposition,'' {\em Optimization On-line} (2014).
+
+\bibitem{zhang2009approximate}
+ Zhang, D., and Adelman, D.,
+\newblock ``An approximate dynamic programming approach to network revenue
+  management with customer choice,'' {\em Transportation Science}, 43, 3,
+  381--394 (2009).
+
+\bibitem{zhang2005revenue}
+ Zhang, D., and Cooper, W.~L.,
+\newblock ``Revenue management for parallel flights with customer-choice
+  behavior,'' {\em Operations Research}, 53, 3, 415--431 (2005).
+
+\end{thebibliography}
